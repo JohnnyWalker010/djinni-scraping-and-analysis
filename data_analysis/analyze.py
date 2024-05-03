@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-file_path = r"C:\Users\Third\djinni-scraping-and-analysis\scrape_djinny\vacancies.csv"
+file_path = r"../scrape_djinny/vacancies.csv"
 df = pd.read_csv(file_path)
 
 df_technologies = (
@@ -20,6 +20,6 @@ technology_counts.head(30).plot(kind="bar", color="skyblue")
 plt.title("Top 10 Popular Technologies in Job Vacancies")
 plt.xlabel("Technology")
 plt.ylabel("Count")
-plt.xticks(rotation=45, ha="right")
+plt.xticks(rotation=90, ha="right")
 plt.tight_layout()
 plt.show()
