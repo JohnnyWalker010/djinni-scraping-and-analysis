@@ -2,6 +2,7 @@ import random
 import time
 
 import scrapy
+from scrapy.http import Response
 
 
 class VacanciesSpider(scrapy.Spider):
@@ -11,7 +12,7 @@ class VacanciesSpider(scrapy.Spider):
     download_delay = 3
     processed_urls = set()
 
-    def parse(self, response, **kwargs):
+    def parse(self, response: Response, **kwargs) -> None:
         for job_link in response.css(
             "ul.list-unstyled.list-jobs.mb-4 a::attr(href)"
         ).getall():
@@ -26,7 +27,7 @@ class VacanciesSpider(scrapy.Spider):
             yield response.follow(next_page, callback=self.parse)
 
     @staticmethod
-    def parse_job(response):
+    def parse_job(response: Response) -> None:
         time.sleep(random.uniform(1, 3))
         yield {
             "title": response.css(
